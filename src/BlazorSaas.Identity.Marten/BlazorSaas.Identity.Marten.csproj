@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <PackageId>BlazorSaas.Identity.Marten</PackageId>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Marten" Version="7.30.1" />
+      <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="9.0.0-rc.2.24474.3" />
+      <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="9.0.0-rc.2.24474.3" />
+      <PackageReference Include="System.Text.Json" Version="9.0.0-rc.2.24473.5" />
+    </ItemGroup>
+
+</Project>

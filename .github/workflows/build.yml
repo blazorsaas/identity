@@ -1,0 +1,33 @@
+name: Pack and push library
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build-and-pack:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 9.0.100-rc.2.24474.11
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build --no-restore
+
+      - name: Test
+        run: dotnet test --no-build
+
+      - name: Pack
+        run: dotnet pack -o:package
+
+      - name: Push generated packages
+        run: dotnet nuget push ./package/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
